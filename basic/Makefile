@@ -7,11 +7,16 @@ HIPCC=$(HIP_PATH)/bin/hipcc
 
 SOURCES=square.cpp
 
-all: square.out
+all: square.out vectoradd.out hipmemcpyasync.out
 
 # Step
-square.out: $(SOURCES)
-	$(HIPCC) $(CXXFLAGS) $(SOURCES) -o $@
+square.out: square.cpp
+	$(HIPCC) $(CXXFLAGS) square.cpp -o $@
 
+vectoradd.out: vectoradd.cpp
+	$(HIPCC) $(CXXFLAGS) vectoradd.cpp -o $@
+
+hipmemcpyasync.out: hipmemcpyasync.cpp
+	$(HIPCC) $(CXXFLAGS) hipmemcpyasync.cpp -o $@
 clean:
 	rm -f *.o *.out
